@@ -341,6 +341,10 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/titanium_64
 
+# Subsystem state notifier
+PRODUCT_PACKAGES += \
+    subsystem_state_notifier
+
 # Telephony
 PRODUCT_PACKAGES += \
     ims-ext-common \
