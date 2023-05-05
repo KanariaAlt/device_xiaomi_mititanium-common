@@ -38,6 +38,10 @@ on property:init.svc.vendor.qcamerasvr=running
     exec /bin/sleep 1s
     restart vendor.camera-provider-2-4
 
+# GPS
+on property:persist.sys.xtra-daemon.enabled=*
+    restart loc_launcher
+
 # RIL
 on boot
     enable vendor.qcrild
