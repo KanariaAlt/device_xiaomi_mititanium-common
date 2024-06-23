@@ -10,6 +10,9 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 # Signed
 -include hardware/titanium_64/keys/product.mk
 
+# Add common definitions for Qualcomm
+$(call inherit-product, hardware/qcom-caf/common/common.mk)
+
 # Bootanimation
 TARGET_BOOTANIMATION_HALF_RES := true
 
