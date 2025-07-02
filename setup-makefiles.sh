@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017-2020 The LineageOS Project
+# Copyright (C) 2017-2022 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -21,28 +21,72 @@ if [ ! -f "${HELPER}" ]; then
 fi
 source "${HELPER}"
 
-# Initialize the helper for common
-setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true
+while [ "${#}" -gt 0 ]; do
+    case "${1}" in
+        --only-common )
+                ONLY_COMMON=true
+                ;;
+        --only-target )
+                ONLY_TARGET=true
+                ;;
+    esac
+    shift
+done
 
-# Warning headers and guards
-write_headers "daisy mido sakura tissot vince ysl"
+if [ -z "${DEVICE_PARENT}" ]; then
+    DEVICE_PARENT="."
+fi
 
-# The standard common blobs
-write_makefiles "${MY_DIR}/proprietary-files.txt" true
-
-# Finish
-write_footers
-
-if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
-    # Reinitialize the helper for device
-    setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false
+if [ -z "$ONLY_TARGET" ]; then
+    # Initialize the helper for common
+    setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true
 
     # Warning headers and guards
-    write_headers
+    write_headers "ysl vince sakura daisy mido tiffany rosy"
 
-    # The standard device blobs
-    write_makefiles "${MY_DIR}/../${DEVICE}/proprietary-files.txt" true
+    # The standard common blobs
+    write_makefiles "${MY_DIR}/proprietary-files-qc-sys.txt" true
+    write_makefiles "${MY_DIR}/proprietary-files-qc-vndr.txt" true
+    write_makefiles "${MY_DIR}/proprietary-files-qc-vndr-32.txt" true
 
     # Finish
     write_footers
+fi
+
+if [ -z "$ONLY_COMMON" ]; then
+    if [ -s "${MY_DIR}/../${DEVICE_PARENT}/${DEVICE}/proprietary-files.txt" ]; then
+        # Reinitialize the helper for device
+        setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false
+
+        # Warning headers and guards
+        write_headers
+
+        # The standard device blobs
+        for proprietary_files_txt in ${MY_DIR}/../${DEVICE_PARENT}/${DEVICE}/proprietary-files*.txt; do
+            write_makefiles "$proprietary_files_txt" true
+        done
+
+        # Finish
+        write_footers
+    fi
+
+    if [ -s "${MY_DIR}/../${DEVICE_SPECIFIED_COMMON}/proprietary-files.txt" ]; then
+        # Workaround: Define $DEVICE
+        export DEVICE="${DEVICE_SPECIFIED_COMMON}"
+        export DEVICE_COMMON="${DEVICE_SPECIFIED_COMMON}"
+
+        # Reinitialize the helper for device specified common
+        setup_vendor "${DEVICE_SPECIFIED_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true
+
+        # Warning headers and guards
+        write_headers "$DEVICE_SPECIFIED_COMMON_DEVICE"
+
+        # The standard device blobs
+        for proprietary_files_txt in ${MY_DIR}/../${DEVICE_SPECIFIED_COMMON}/proprietary-files*.txt; do
+            write_makefiles "$proprietary_files_txt" true
+        done
+
+        # Finish
+        write_footers
+    fi
 fi
