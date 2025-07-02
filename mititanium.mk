@@ -339,7 +339,7 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/xiaomi
+    hardware/titanium_64
 
 # Telephony
 PRODUCT_PACKAGES += \
