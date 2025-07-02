@@ -307,17 +307,8 @@ PRODUCT_COPY_FILES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.qcom.rc \
     init.qcom.usb.rc \
-    init.recovery.qcom.rc \
-    init.target.rc \
-    ueventd.qcom.rc
-
-PRODUCT_PACKAGES += \
-    init.qcom.sh \
-    init.qcom.post_boot.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.usb.sh 
+    init.recovery.qcom.rc 
 
 # Remove unwanted packages
 PRODUCT_PACKAGES += \
