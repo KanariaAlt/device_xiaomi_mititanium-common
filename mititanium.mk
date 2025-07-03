@@ -186,13 +186,12 @@ PRODUCT_COPY_FILES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
+    android.hardware.health-service.qti \
+    android.hardware.health-service.qti_recovery
 
-ifneq ($(AB_OTA_UPDATER),true)
+# Lineage Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl.recovery
-endif
+    vendor.lineage.health-service.default
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -238,10 +237,6 @@ PRODUCT_PACKAGES += \
 # LiveDisplay
 PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay@2.0-service-sdm
-
-# Lineage Health
-PRODUCT_PACKAGES += \
-    vendor.lineage.health-service.default
 
 # Media
 PRODUCT_COPY_FILES += \
