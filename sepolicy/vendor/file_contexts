@@ -25,6 +25,7 @@
 /firmware                                                     u:object_r:firmware_file:s0
 /bt_firmware                                                  u:object_r:bt_firmware_file:s0
 /persist(/.*)?                                                u:object_r:mnt_vendor_file:s0
+/mnt/vendor/persist(/.*)?                                     u:object_r:mnt_vendor_file:s0
 
 # HALs
 /(vendor|system/vendor)/bin/hw/android\.hardware\.health-service\.qti			u:object_r:hal_health_default_exec:s0
