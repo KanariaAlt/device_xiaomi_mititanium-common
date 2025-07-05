@@ -33,5 +33,9 @@ genfscon sysfs /touchpanel	u:object_r:proc_touchpanel:s0
 # Vibrator
 genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-03/200f000.qcom,spmi:qcom,pmi8940@3:qcom,haptics@c000/leds/vibrator	u:object_r:sysfs_leds:s0
 
+# RTC
+genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-00/200f000.qcom,spmi:qcom,pm8937@0:qcom,pm8937_rtc/rtc u:object_r:sysfs_rtc:s0
+genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-00/200f000.qcom,spmi:qcom,pm8953@0:qcom,pm8953_rtc/rtc u:object_r:sysfs_rtc:s0
+
 # SDHCI
 genfscon sysfs /kernel/sdhci_msm	u:object_r:sysfs_kernel_sdhci_msm:s0
