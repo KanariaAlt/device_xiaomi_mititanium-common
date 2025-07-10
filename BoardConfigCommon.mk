@@ -118,16 +118,6 @@ DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):init_xiaomi_mititanium
 TARGET_RECOVERY_DEVICE_MODULES := init_xiaomi_mititanium
 
-# Partitions
-BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
-BOARD_SYSTEMIMAGE_PARTITION_SIZE ?= 3221225472
-BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
-BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
-BOARD_ROOT_EXTRA_SYMLINKS := \
-    /vendor/dsp:/dsp \
-    /vendor/firmware_mnt:/firmware \
-    /mnt/vendor/persist:/persist
-
 # Power
 TARGET_USES_INTERACTION_BOOST := true
 
@@ -142,11 +132,6 @@ TARGET_SYSTEM_PROP += $(COMMON_PATH)/properties/system.prop
 TARGET_SYSTEM_EXT_PROP += $(COMMON_PATH)/properties/system_ext.prop
 TARGET_PRODUCT_PROP += $(COMMON_PATH)/properties/product.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/properties/vendor.prop
-
-# Recovery
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
-TARGET_USERIMAGES_USE_F2FS := true
-TARGET_USERIMAGES_USE_EXT4 := true
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
