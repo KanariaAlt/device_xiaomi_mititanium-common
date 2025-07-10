@@ -44,10 +44,6 @@ vendor/lib/libsurround_3mic_proc.so
 # Audiosphere
 vendor/lib/soundfx/libasphere.so
 
-# Camera libts - from ysl
--vendor/lib/libts_detected_face_hal.so
--vendor/lib/libts_face_beautify_hal.so
-
 # Graphics - from LA.UM.10.6.2.r1-01600-89xx.0
 vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so
