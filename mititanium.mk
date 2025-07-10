@@ -8,7 +8,7 @@
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
 # Signed
--include vendor/extra/product.mk
+-include hardware/titanium_64/keys/product.mk
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
