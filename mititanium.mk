@@ -8,7 +8,7 @@
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
 # Signed
--include hardware/titanium_64/keys/product.mk
+-include hardware/titanium_64/lineage-priv/keys/keys.mk
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
