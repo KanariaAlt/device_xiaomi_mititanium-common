@@ -125,13 +125,20 @@ TARGET_SYSTEM_PROP += $(COMMON_PATH)/properties/system.prop
 TARGET_SYSTEM_EXT_PROP += $(COMMON_PATH)/properties/system_ext.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/properties/vendor.prop
 
+ifeq ($(TARGET_KERNEL_VERSION),4.19)
+TARGET_VENDOR_PROP += $(COMMON_PATH)/properties/vendor_k4.19.prop
+endif
+
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # SELinux
 include device/qcom/sepolicy-legacy-um/SEPolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
-PRODUCT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS  += $(COMMON_PATH)/sepolicy/private
+ifeq ($(TARGET_KERNEL_VERSION),4.19)
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/k4.19/vendor
+endif
 
 # Treble
 PRODUCT_FULL_TREBLE_OVERRIDE := true
